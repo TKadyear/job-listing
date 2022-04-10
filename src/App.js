@@ -1,21 +1,30 @@
 import styled from 'styled-components';
-
-
-const Title = styled.h1`
-    font-size: 1.5em;
-    font-family: 'Spartan';
-    text-align: center;
-    color: white;
-  `;
-const ContainerMain = styled.div`
-  margin: 0 auto;
-  background: var(--primary);
+import { device } from './device'
+import { CardsContainer } from './components/CardsContainer'
+const ContainerMain = styled.main`
+  display: flex;
+  box-sizing: content-box;
+  padding: 3.5rem 0;
+  flex-direction: column;
+  align-items: center;
+  background: var(--bg-primary);
+`;
+const BackgroundMain = styled.div`
+    height: 156px;
+    background: url(./images/bg-header-mobile.svg) var(--primary);
+  @media ${device.tablet} {
+    background: url(./images/bg-header-desktop.svg) var(--primary);
+  }
 `;
 function App() {
   return (
-    <ContainerMain>
-      <Title>This is Style Components</Title>
-    </ContainerMain>
+    <>
+      <BackgroundMain>
+      </BackgroundMain>
+      <ContainerMain>
+        <CardsContainer></CardsContainer>
+      </ContainerMain>
+    </>
   );
 }
 
