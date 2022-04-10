@@ -4,7 +4,6 @@ import { device } from "../device";
 import { CardTemplate } from "./CardTemplate";
 const Container = styled.div`
   width: 90%;
-  margin: 3.5rem auto;
   display: flex;
   flex-direction: column;
   gap: 2.625rem;

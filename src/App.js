@@ -1,8 +1,12 @@
 import styled from 'styled-components';
 import { device } from './device'
 import { CardsContainer } from './components/CardsContainer'
-const ContainerMain = styled.div`
-  height: 100vh;
+const ContainerMain = styled.main`
+  display: flex;
+  box-sizing: content-box;
+  padding: 3.5rem 0;
+  flex-direction: column;
+  align-items: center;
   background: var(--bg-primary);
 `;
 const BackgroundMain = styled.div`
@@ -14,11 +18,13 @@ const BackgroundMain = styled.div`
 `;
 function App() {
   return (
-    <ContainerMain>
+    <>
       <BackgroundMain>
       </BackgroundMain>
-      <CardsContainer></CardsContainer>
-    </ContainerMain>
+      <ContainerMain>
+        <CardsContainer></CardsContainer>
+      </ContainerMain>
+    </>
   );
 }
 
