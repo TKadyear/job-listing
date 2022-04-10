@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import { device } from "../device";
 import { CardTemplate } from "./CardTemplate";
 const Container = styled.div`
   width: 90%;
