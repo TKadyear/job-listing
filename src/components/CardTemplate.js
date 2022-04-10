@@ -21,7 +21,6 @@ const HighlightBar = styled.div`
 const TitleCompany = styled.p`
   display: inline;
   margin-right:1rem ;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   color: var(--primary);
   font-weight: bold;
 `
@@ -39,7 +38,6 @@ const ContainerTags = styled.div`
 // IMPROVE the way to pass props in these tags
 const Tag = styled.span`
   display: inline;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   background-color: ${props => props.new ? 'var(--primary)' : 'var(--darker-bg)'} ;
   padding: 4px 8px;
   margin: 0 0.25rem;
@@ -71,7 +69,6 @@ const ContainerRequirements = styled.div`
 `
 const DevTag = styled.p`
   display: inline;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   background-color: var(--bg-primary);
   padding: 4px 8px;
   margin: 0;
