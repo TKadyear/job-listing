@@ -3,11 +3,21 @@ import { device } from "../device";
 
 const ContainerCard = styled.div`
   background: var(--bg-cards);
-  padding: 2rem 1rem;
+  padding: 2rem 1.5rem;
   position: relative;
   border-radius: 0.25rem;
   box-shadow: 0 6px 16px var(--shadow-primary);
 `;
+const HighlightBar = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: var(--primary);
+  width: 0.325rem;
+  height: 100%;
+  border-top-left-radius: inherit;
+  border-bottom-left-radius: inherit;
+`
 const TitleCompany = styled.p`
   display: inline;
   margin-right:1rem ;
@@ -81,6 +91,7 @@ export const CardTemplate = (props) => {
   const detail = `${job.postedAt} · ${job.contract} · ${job.location}`
   return (
     <ContainerCard>
+      {job.new && job.featured && <HighlightBar />}
       <ImageCompany src={job.logo} />
       <TitleCompany>{job.company}</TitleCompany>
       <ContainerTags>
