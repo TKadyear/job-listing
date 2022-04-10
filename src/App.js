@@ -1,23 +1,30 @@
-import logo from './logo.svg';
 import styled from 'styled-components';
-
-
-const Title = styled.h1`
-    font-size: 1.5em;
-    text-align: center;
-    color: white;
-  `;
-const Wrapper = styled.div`
-  width: 50%;
-  height: 50%;
-  margin: 0 auto;
-  background: palevioletred;
+import { device } from './device'
+import { CardsContainer } from './components/CardsContainer'
+const ContainerMain = styled.main`
+  display: flex;
+  box-sizing: content-box;
+  padding: 3.5rem 0;
+  flex-direction: column;
+  align-items: center;
+  background: var(--bg-primary);
+`;
+const BackgroundMain = styled.div`
+    height: 156px;
+    background: url(./images/bg-header-mobile.svg) var(--primary);
+  @media ${device.tablet} {
+    background: url(./images/bg-header-desktop.svg) var(--primary);
+  }
 `;
 function App() {
   return (
-    <Wrapper>
-      <Title>This is Style Components</Title>
-    </Wrapper>
+    <>
+      <BackgroundMain>
+      </BackgroundMain>
+      <ContainerMain>
+        <CardsContainer></CardsContainer>
+      </ContainerMain>
+    </>
   );
 }
 

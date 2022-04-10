@@ -1,0 +1,23 @@
+:root {
+  --primary: #5ba4a4;
+  --shadow-primary: #5ba4a456;
+  --bg-cards: #fff;
+  --bg-primary: #f0fafa;
+  --filter-tablets: #eef6f6;
+  --dark-bg: #7b8e8e;
+  --darker-bg: #2c3a3a;
+
+}
+
+@font-face {
+  font-family: 'Spartan';
+  src:
+    url('../public/fonts/Spartan-VariableFont_wght.woff') format('woff'),
+    url('../public/fonts/Spartan-VariableFont_wght.ttf') format('truetype');
+}
+
+body {
+  margin: 0 auto;
+  font-size: 15px;
+  box-sizing: border-box;
+}
