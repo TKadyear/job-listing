@@ -1,23 +1,21 @@
-import logo from './logo.svg';
 import styled from 'styled-components';
 
 
 const Title = styled.h1`
     font-size: 1.5em;
+    font-family: 'Spartan';
     text-align: center;
     color: white;
   `;
-const Wrapper = styled.div`
-  width: 50%;
-  height: 50%;
+const ContainerMain = styled.div`
   margin: 0 auto;
-  background: palevioletred;
+  background: var(--primary);
 `;
 function App() {
   return (
-    <Wrapper>
+    <ContainerMain>
       <Title>This is Style Components</Title>
-    </Wrapper>
+    </ContainerMain>
   );
 }
 
