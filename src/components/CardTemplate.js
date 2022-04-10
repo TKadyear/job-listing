@@ -54,13 +54,17 @@ const Divider = styled.hr`
     display:none;
   }
 `
-
+const ContainerRequirements = styled.div`
+  display: flex;
+  flex-flow: row wrap;
+  gap: 1rem;
+`
 const DevTag = styled.p`
   display: inline;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   background-color: var(--bg-primary);
   padding: 4px 8px;
-  margin: 0 0.5rem;
+  margin: 0;
   border-radius: 4px;
   color: var(--primary);
   font-weight: bold;
@@ -68,9 +72,12 @@ const DevTag = styled.p`
 `
 export const CardTemplate = (props) => {
   const job = props.data;
-  const LanguagesRequired = () => job.languages.map(language =>
-    <DevTag key={job.company + language}>{language}</DevTag>
-  )
+  const Requirements = () => {
+    const listRequired = [job.role, job.level, ...job.languages, ...job.tools]
+    return listRequired.map(language =>
+      <DevTag key={job.company + language}>{language}</DevTag>
+    )
+  }
   const detail = `${job.postedAt} · ${job.contract} · ${job.location}`
   return (
     <ContainerCard>
@@ -83,7 +90,7 @@ export const CardTemplate = (props) => {
       <JobPosition>{job.position}</JobPosition>
       <DetailsJob>{detail}</DetailsJob>
       <Divider />
-      {LanguagesRequired()}
+      <ContainerRequirements>{Requirements()}</ContainerRequirements>
 
     </ContainerCard >
   );
