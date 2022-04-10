@@ -7,6 +7,7 @@ This is a solution to the [Job Listing](https://www.frontendmentor.io/challenges
     - [Clone this repository](#clone-this-repository)
   - [My process](#my-process)
     - [Built with](#built-with)
+  - [Useful Resources](#useful-resources)
   - [Author](#author)
 ### The challenge
 
@@ -49,7 +50,9 @@ $ npm run build
 - Jest
 
 
-
+## Useful Resources
+- [https://jsramblings.com/how-to-use-media-queries-with-styled-components/](https://jsramblings.com/how-to-use-media-queries-with-styled-components/)
+- [https://jsramblings.com/migrating-to-styled-components-cheatsheet/](https://jsramblings.com/migrating-to-styled-components-cheatsheet/)
 
 ## Author
 - Github - [Tamara Kadyear | TKadyear](https://github.com/TKadyear)
