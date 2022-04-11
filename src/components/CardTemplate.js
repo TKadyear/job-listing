@@ -3,10 +3,16 @@ import { device } from "../device";
 
 const ContainerCard = styled.div`
   background: var(--bg-cards);
-  padding: 2rem 1.5rem;
+  padding: 2rem 2.75rem;
   position: relative;
   border-radius: 0.25rem;
   box-shadow: 0 6px 16px var(--shadow-primary);
+  @media ${device.tablet}{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 2rem;
+  }
 `;
 const HighlightBar = styled.div`
   position: absolute;
@@ -29,6 +35,10 @@ const ImageCompany = styled.img`
   width: 3rem;
   top: -1.5rem;
   left: 1.5rem;
+  @media ${device.tablet}{
+    position: static;
+    width:5.5rem;
+  }
 `
 const ContainerTags = styled.div`
   display: inline;
@@ -47,8 +57,8 @@ const Tag = styled.span`
   font-size: 12px;
 `
 const ContainerJob = styled.div`
-  @media ${device.desktop}{
-    width: 50%;
+  @media ${device.tablet}{
+  justify-self: left;
   }
 `
 const JobPosition = styled.p`
@@ -92,7 +102,7 @@ const DevTag = styled.p`
     background-color: var(--primary);
   }
   @media ${device.tablet}{
-    padding:8px;
+    padding:10px 8px;
   }
 `
 export const CardTemplate = (props) => {
@@ -100,7 +110,7 @@ export const CardTemplate = (props) => {
   const Requirements = () => {
     const listRequired = [job.role, job.level, ...job.languages, ...job.tools]
     return listRequired.map(language =>
-      <DevTag key={job.company + language}>{language}</DevTag>
+      <DevTag onClick={props.onClick} key={job.company + language}>{language}</DevTag>
     )
   }
   const detail = `${job.postedAt} · ${job.contract} · ${job.location}`
@@ -108,12 +118,13 @@ export const CardTemplate = (props) => {
     <ContainerCard>
       {job.new && job.featured && <HighlightBar />}
       <ImageCompany src={job.logo} />
-      <TitleCompany>{job.company}</TitleCompany>
-      <ContainerTags>
-        {job.new && <Tag new={job.new}>NEW!</Tag>}
-        {job.featured && <Tag new={false}>FEATURED</Tag>}
-      </ContainerTags>
       <ContainerJob>
+
+        <TitleCompany>{job.company}</TitleCompany>
+        <ContainerTags>
+          {job.new && <Tag new={job.new}>NEW!</Tag>}
+          {job.featured && <Tag new={false}>FEATURED</Tag>}
+        </ContainerTags>
         <JobPosition>{job.position}</JobPosition>
         <DetailsJob>{detail}</DetailsJob>
       </ContainerJob>
