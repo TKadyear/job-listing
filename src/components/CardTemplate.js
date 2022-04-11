@@ -3,10 +3,16 @@ import { device } from "../device";
 
 const ContainerCard = styled.div`
   background: var(--bg-cards);
-  padding: 2rem 1.5rem;
+  padding: 2rem 2.75rem;
   position: relative;
   border-radius: 0.25rem;
   box-shadow: 0 6px 16px var(--shadow-primary);
+  @media ${device.tablet}{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 2rem;
+  }
 `;
 const HighlightBar = styled.div`
   position: absolute;
@@ -21,7 +27,6 @@ const HighlightBar = styled.div`
 const TitleCompany = styled.p`
   display: inline;
   margin-right:1rem ;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   color: var(--primary);
   font-weight: bold;
 `
@@ -30,6 +35,10 @@ const ImageCompany = styled.img`
   width: 3rem;
   top: -1.5rem;
   left: 1.5rem;
+  @media ${device.tablet}{
+    position: static;
+    width:5.5rem;
+  }
 `
 const ContainerTags = styled.div`
   display: inline;
@@ -39,7 +48,6 @@ const ContainerTags = styled.div`
 // IMPROVE the way to pass props in these tags
 const Tag = styled.span`
   display: inline;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   background-color: ${props => props.new ? 'var(--primary)' : 'var(--darker-bg)'} ;
   padding: 4px 8px;
   margin: 0 0.25rem;
@@ -48,9 +56,18 @@ const Tag = styled.span`
   font-weight: bold;
   font-size: 12px;
 `
+const ContainerJob = styled.div`
+  @media ${device.tablet}{
+    width: 50%;
+}
+`
 const JobPosition = styled.p`
-  font-size: 1rem;
+  font-size: 1.25rem;
   font-weight: bold;
+  cursor: pointer;
+  :hover{
+    color: var(--primary);
+  }
 `
 const DetailsJob = styled.span`
   color: var(--dark-bg);
@@ -68,10 +85,13 @@ const ContainerRequirements = styled.div`
   display: flex;
   flex-flow: row wrap;
   gap: 1rem;
+  @media ${device.tablet}{
+    justify-content: end;
+    width:40%;
+  }
 `
 const DevTag = styled.p`
   display: inline;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   background-color: var(--bg-primary);
   padding: 4px 8px;
   margin: 0;
@@ -79,13 +99,22 @@ const DevTag = styled.p`
   color: var(--primary);
   font-weight: bold;
   font-size: 14px;
+  transition: 250ms;
+  cursor: pointer;
+  :hover{
+    color: var(--bg-primary);
+    background-color: var(--primary);
+  }
+  @media ${device.tablet}{
+    padding:10px 8px;
+  }
 `
 export const CardTemplate = (props) => {
   const job = props.data;
   const Requirements = () => {
     const listRequired = [job.role, job.level, ...job.languages, ...job.tools]
     return listRequired.map(language =>
-      <DevTag key={job.company + language}>{language}</DevTag>
+      <DevTag onClick={props.onClick} key={job.company + language}>{language}</DevTag>
     )
   }
   const detail = `${job.postedAt} · ${job.contract} · ${job.location}`
@@ -93,13 +122,16 @@ export const CardTemplate = (props) => {
     <ContainerCard>
       {job.new && job.featured && <HighlightBar />}
       <ImageCompany src={job.logo} />
-      <TitleCompany>{job.company}</TitleCompany>
-      <ContainerTags>
-        {job.new && <Tag new={job.new}>NEW!</Tag>}
-        {job.featured && <Tag new={false}>FEATURED</Tag>}
-      </ContainerTags>
-      <JobPosition>{job.position}</JobPosition>
-      <DetailsJob>{detail}</DetailsJob>
+      <ContainerJob>
+
+        <TitleCompany>{job.company}</TitleCompany>
+        <ContainerTags>
+          {job.new && <Tag new={job.new}>NEW!</Tag>}
+          {job.featured && <Tag new={false}>FEATURED</Tag>}
+        </ContainerTags>
+        <JobPosition>{job.position}</JobPosition>
+        <DetailsJob>{detail}</DetailsJob>
+      </ContainerJob>
       <Divider />
       <ContainerRequirements>{Requirements()}</ContainerRequirements>
 
