@@ -7,6 +7,9 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   gap: 2.625rem;
+  @media ${device.desktop}{
+    width:75%;
+  }
 `;
 const FilterTags = styled.div`
   padding: 1.5rem 2.75rem;

@@ -9,7 +9,7 @@ const ContainerCard = styled.div`
   box-shadow: 0 6px 16px var(--shadow-primary);
   @media ${device.tablet}{
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-start;
     align-items: center;
     gap: 2rem;
   }
@@ -58,8 +58,8 @@ const Tag = styled.span`
 `
 const ContainerJob = styled.div`
   @media ${device.tablet}{
-  justify-self: left;
-  }
+    width: 50%;
+}
 `
 const JobPosition = styled.p`
   font-size: 1.25rem;
@@ -85,6 +85,10 @@ const ContainerRequirements = styled.div`
   display: flex;
   flex-flow: row wrap;
   gap: 1rem;
+  @media ${device.tablet}{
+    justify-content: end;
+    width:40%;
+  }
 `
 const DevTag = styled.p`
   display: inline;
