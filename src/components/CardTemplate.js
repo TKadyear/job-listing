@@ -46,9 +46,18 @@ const Tag = styled.span`
   font-weight: bold;
   font-size: 12px;
 `
+const ContainerJob = styled.div`
+  @media ${device.desktop}{
+    width: 50%;
+  }
+`
 const JobPosition = styled.p`
-  font-size: 1rem;
+  font-size: 1.25rem;
   font-weight: bold;
+  cursor: pointer;
+  :hover{
+    color: var(--primary);
+  }
 `
 const DetailsJob = styled.span`
   color: var(--dark-bg);
@@ -76,6 +85,15 @@ const DevTag = styled.p`
   color: var(--primary);
   font-weight: bold;
   font-size: 14px;
+  transition: 250ms;
+  cursor: pointer;
+  :hover{
+    color: var(--bg-primary);
+    background-color: var(--primary);
+  }
+  @media ${device.tablet}{
+    padding:8px;
+  }
 `
 export const CardTemplate = (props) => {
   const job = props.data;
@@ -95,8 +113,10 @@ export const CardTemplate = (props) => {
         {job.new && <Tag new={job.new}>NEW!</Tag>}
         {job.featured && <Tag new={false}>FEATURED</Tag>}
       </ContainerTags>
-      <JobPosition>{job.position}</JobPosition>
-      <DetailsJob>{detail}</DetailsJob>
+      <ContainerJob>
+        <JobPosition>{job.position}</JobPosition>
+        <DetailsJob>{detail}</DetailsJob>
+      </ContainerJob>
       <Divider />
       <ContainerRequirements>{Requirements()}</ContainerRequirements>
 

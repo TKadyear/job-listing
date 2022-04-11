@@ -15,7 +15,6 @@ export const CardsContainer = () => {
       .then(response => response.json())
       .then(data => setListData(data));
   }, [])
-
   return (
     <Container>
       {listData.map(job =>
