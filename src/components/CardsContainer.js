@@ -60,6 +60,8 @@ export const CardsContainer = () => {
         }
       })
       setDisplayData([...listFiltered])
+    } else {
+      setDisplayData([...listData]);
     }
   }, [listFilter])
   const handleClick = (e) => {
