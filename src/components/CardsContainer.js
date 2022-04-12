@@ -20,8 +20,14 @@ const FilterTags = styled.div`
   box-shadow: 0 6px 16px var(--shadow-primary);
   display: flex;
   flex-flow: row wrap;
+  justify-content: space-between;
   gap: 1.25rem;
 `;
+const ContainerFilterTags = styled.div`
+  display: flex;
+  flex-flow: row wrap;
+  gap: 1.25rem;
+`
 const DevTag = styled.p`
   display: inline;
   background-color: var(--bg-primary);
@@ -40,6 +46,15 @@ const DevTag = styled.p`
   @media ${device.tablet}{
     padding:10px 8px;
   }
+`
+const Clear = styled.button`
+  cursor: pointer;
+  border:0;
+  font-size: 18px;
+  font-weight: 700;
+  background: inherit;
+  color: var(--primary);
+  text-decoration: underline;
 `
 export const CardsContainer = () => {
   const [listData, setListData] = useState([]);
@@ -75,7 +90,13 @@ export const CardsContainer = () => {
   const Tags = () => listFilter.map((item, index) => <DevTag key={index}>{item}</DevTag>)
   return (
     <Container>
-      {(listFilter.length > 0) && <FilterTags>{Tags()}</FilterTags>}
+      {(listFilter.length > 0) &&
+        <FilterTags>
+          <ContainerFilterTags>
+            {Tags()}
+          </ContainerFilterTags>
+          <Clear onClick={() => setListFilter([])}>Clear</Clear>
+        </FilterTags>}
       {displayData.map(job =>
         <CardTemplate key={job.id} data={job} onClick={handleClick} />
       )}
