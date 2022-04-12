@@ -1,17 +1,17 @@
 {
   "files": {
-    "main.css": "/job-listing/static/css/main.6113e9fe.css",
-    "main.js": "/job-listing/static/js/main.226499f7.js",
-    "static/js/787.80386322.chunk.js": "/job-listing/static/js/787.80386322.chunk.js",
-    "static/media/Spartan-VariableFont_wght.ttf": "/job-listing/static/media/Spartan-VariableFont_wght.80059c2b3b1cc126c3e3.ttf",
-    "static/media/Spartan-VariableFont_wght.woff": "/job-listing/static/media/Spartan-VariableFont_wght.dfd319de5a3d23ba9af0.woff",
-    "index.html": "/job-listing/index.html",
-    "main.6113e9fe.css.map": "/job-listing/static/css/main.6113e9fe.css.map",
-    "main.226499f7.js.map": "/job-listing/static/js/main.226499f7.js.map",
-    "787.80386322.chunk.js.map": "/job-listing/static/js/787.80386322.chunk.js.map"
+    "main.css": "/static/css/main.f2c02c2e.css",
+    "main.js": "/static/js/main.8c0f529d.js",
+    "static/js/787.80386322.chunk.js": "/static/js/787.80386322.chunk.js",
+    "static/media/Spartan-VariableFont_wght.ttf": "/static/media/Spartan-VariableFont_wght.80059c2b3b1cc126c3e3.ttf",
+    "static/media/Spartan-VariableFont_wght.woff": "/static/media/Spartan-VariableFont_wght.dfd319de5a3d23ba9af0.woff",
+    "index.html": "/index.html",
+    "main.f2c02c2e.css.map": "/static/css/main.f2c02c2e.css.map",
+    "main.8c0f529d.js.map": "/static/js/main.8c0f529d.js.map",
+    "787.80386322.chunk.js.map": "/static/js/787.80386322.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.6113e9fe.css",
-    "static/js/main.226499f7.js"
+    "static/css/main.f2c02c2e.css",
+    "static/js/main.8c0f529d.js"
   ]
 }
