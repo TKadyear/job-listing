@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { CardTemplate } from "./CardTemplate";
 import { device } from '../device';
+import { requestJob } from '../service/requestJobs.js'
 const Container = styled.div`
   width: 90%;
   display: flex;
@@ -40,12 +41,11 @@ const DevTag = styled.p`
   }
 `
 export const CardsContainer = () => {
-  const [listData, setListData] = useState([])
-  const [listFilter, setListFilter] = useState([])
+  const [listData, setListData] = useState([]);
+  const [listFilter, setListFilter] = useState([]);
   useEffect(() => {
-    fetch("./data.json")
-      .then(response => response.json())
-      .then(data => setListData(data));
+    requestJob()
+      .then(data => setListData(data))
   }, [])
   const handleClick = (e) => {
     const value = e.target.textContent;
