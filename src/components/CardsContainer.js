@@ -21,6 +21,7 @@ const FilterTags = styled.div`
   display: flex;
   flex-flow: row wrap;
   justify-content: space-between;
+  align-items: center;
   gap: 1.25rem;
 `;
 const ContainerFilterTags = styled.div`
@@ -28,33 +29,45 @@ const ContainerFilterTags = styled.div`
   flex-flow: row wrap;
   gap: 1.25rem;
 `
-const DevTag = styled.p`
+const DevTag = styled.span`
   display: inline;
   background-color: var(--bg-primary);
-  padding: 4px 8px;
+  padding-left: 8px;
   margin: 0;
   border-radius: 4px;
   color: var(--primary);
   font-weight: bold;
   font-size: 14px;
   transition: 250ms;
+  display:flex;
+  gap: 8px;
+  align-items: center;
   cursor: pointer;
   :hover{
     color: var(--bg-primary);
     background-color: var(--primary);
   }
-  @media ${device.tablet}{
-    padding:10px 8px;
-  }
 `
 const Clear = styled.button`
   cursor: pointer;
   border:0;
+  background: inherit;
   font-size: 18px;
   font-weight: 700;
-  background: inherit;
   color: var(--primary);
   text-decoration: underline;
+`
+const ButtonRemove = styled.button`
+  cursor: pointer;
+  height: 37px;
+  width: 37px;
+  border:0;
+  border-radius: 0 4px 4px 0;
+  background: url("/images/icon-remove.svg") var(--primary) no-repeat;
+  background-position: center;
+  :hover{
+    background-color:var(--darker-bg);
+  }
 `
 export const CardsContainer = () => {
   const [listData, setListData] = useState([]);
@@ -87,7 +100,13 @@ export const CardsContainer = () => {
         : [...prev];
     })
   }
-  const Tags = () => listFilter.map((item, index) => <DevTag key={index}>{item}</DevTag>)
+  const removeFilter = (removeFilter) => setListFilter(prev => [...prev].filter((filter) => filter != removeFilter))
+  const Tags = () => listFilter.map((item, index) =>
+    <DevTag key={index}>
+      {item}
+      <ButtonRemove onClick={() => removeFilter(item)} />
+    </DevTag>
+  )
   return (
     <Container>
       {(listFilter.length > 0) &&
