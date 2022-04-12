@@ -6,5 +6,23 @@ const addToListFilter = (value, prev = []) => {
     ? [...prev, value]
     : [...prev];
 };
-
-module.exports = { addToListFilter }
+const isTheJobMatchFilter = (job, filters) => {
+  const relevantInfoForFilter = [job.role, ...job.languages, ...job.tools];
+  const checkIfMatch = filters.map(filter => {
+    return relevantInfoForFilter.includes(filter)
+  });
+  const isValid = checkIfMatch.every(value => value === true);
+  return isValid;
+}
+const filterAllJobs = (state, filters) => {
+  if (filters.length > 0) {
+    const filtered = [...state].filter(job => {
+      if (isTheJobMatchFilter(job, filters)) {
+        return job;
+      }
+    })
+    return filtered;
+  }
+  return state;
+}
+module.exports = { addToListFilter, filterAllJobs, isTheJobMatchFilter }
