@@ -2,6 +2,8 @@ import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { CardTemplate } from "./CardTemplate";
 import { device } from '../device';
+import { requestJob } from '../service/requestJobs.js'
+import { isTheJobMatchFilter } from '../test/filter-bar'
 const Container = styled.div`
   width: 90%;
   display: flex;
@@ -18,8 +20,14 @@ const FilterTags = styled.div`
   box-shadow: 0 6px 16px var(--shadow-primary);
   display: flex;
   flex-flow: row wrap;
+  justify-content: space-between;
   gap: 1.25rem;
 `;
+const ContainerFilterTags = styled.div`
+  display: flex;
+  flex-flow: row wrap;
+  gap: 1.25rem;
+`
 const DevTag = styled.p`
   display: inline;
   background-color: var(--bg-primary);
@@ -39,23 +47,57 @@ const DevTag = styled.p`
     padding:10px 8px;
   }
 `
+const Clear = styled.button`
+  cursor: pointer;
+  border:0;
+  font-size: 18px;
+  font-weight: 700;
+  background: inherit;
+  color: var(--primary);
+  text-decoration: underline;
+`
 export const CardsContainer = () => {
-  const [listData, setListData] = useState([])
-  const [listFilter, setListFilter] = useState([])
+  const [listData, setListData] = useState([]);
+  const [displayData, setDisplayData] = useState([]);
+  const [listFilter, setListFilter] = useState([]);
   useEffect(() => {
-    fetch("./data.json")
-      .then(response => response.json())
-      .then(data => setListData(data));
+    requestJob()
+      .then(data => {
+        setListData(data);
+        setDisplayData(data);
+      })
   }, [])
+  useEffect(() => {
+    if (listFilter.length > 0) {
+      const listFiltered = [...listData].filter(job => {
+        if (isTheJobMatchFilter(job, listFilter)) {
+          return job;
+        }
+      })
+      setDisplayData([...listFiltered])
+    } else {
+      setDisplayData([...listData]);
+    }
+  }, [listFilter])
   const handleClick = (e) => {
     const value = e.target.textContent;
-    setListFilter(prev => prev.includes(value) ? [...prev] : [...prev, value])
+    setListFilter(prev => {
+      return !prev.includes(value) && (value.constructor === String)
+        ? [...prev, value]
+        : [...prev];
+    })
   }
   const Tags = () => listFilter.map((item, index) => <DevTag key={index}>{item}</DevTag>)
   return (
     <Container>
-      {(listFilter.length > 0) && <FilterTags>{Tags()}</FilterTags>}
-      {listData.map(job =>
+      {(listFilter.length > 0) &&
+        <FilterTags>
+          <ContainerFilterTags>
+            {Tags()}
+          </ContainerFilterTags>
+          <Clear onClick={() => setListFilter([])}>Clear</Clear>
+        </FilterTags>}
+      {displayData.map(job =>
         <CardTemplate key={job.id} data={job} onClick={handleClick} />
       )}
     </Container>
