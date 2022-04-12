@@ -7,6 +7,7 @@ const ContainerMain = styled.main`
   padding: 3.5rem 0;
   flex-direction: column;
   align-items: center;
+  min-height: calc(100vh - 156px);
   background: var(--bg-primary);
 `;
 const BackgroundMain = styled.div`
