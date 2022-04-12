@@ -47,17 +47,39 @@ export const CardsContainer = () => {
       .then(response => response.json())
       .then(data => setListData(data));
   }, [])
+  const Cards = () => {
+    let allCards = []
+    /*  TODO
+    * Realmente necesito hacer un set de los datos para que se vuelva a iniciar todo el cambio,
+    * es decir necesito un context y poder cambiar seteando los datos.
+    * Como que se haga un filter de listData y ya
+    */
+    // allCards = listData.map(job =>
+    //   <CardTemplate key={job.id} data={job} onClick={handleClick} />
+    // )
+    if (listFilter.length > 0) {
+      const newList = [...listData].filter(job => {
+        let valuesObject = Object.values(job);
+        console.table(job)
+        console.log(valuesObject)
+      })
+    }
+    return allCards;
+  }
+
   const handleClick = (e) => {
     const value = e.target.textContent;
-    setListFilter(prev => prev.includes(value) ? [...prev] : [...prev, value])
+    setListFilter(prev => prev.includes(value) ? [...prev] : [...prev, value]);
+    Cards();
   }
   const Tags = () => listFilter.map((item, index) => <DevTag key={index}>{item}</DevTag>)
   return (
     <Container>
-      {(listFilter.length > 0) && <FilterTags>{Tags()}</FilterTags>}
+      {listFilter.length > 0 && <FilterTags>{Tags()}</FilterTags>}
       {listData.map(job =>
         <CardTemplate key={job.id} data={job} onClick={handleClick} />
       )}
+
     </Container>
   )
 }
