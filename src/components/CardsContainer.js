@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { CardTemplate } from "./CardTemplate";
 import { device } from '../device';
 import { requestJob } from '../service/requestJobs.js'
+import { isTheJobMatchFilter } from '../test/filter-bar'
 const Container = styled.div`
   width: 90%;
   display: flex;
@@ -42,20 +43,38 @@ const DevTag = styled.p`
 `
 export const CardsContainer = () => {
   const [listData, setListData] = useState([]);
+  const [displayData, setDisplayData] = useState([]);
   const [listFilter, setListFilter] = useState([]);
   useEffect(() => {
     requestJob()
-      .then(data => setListData(data))
+      .then(data => {
+        setListData(data);
+        setDisplayData(data);
+      })
   }, [])
+  useEffect(() => {
+    if (listFilter.length > 0) {
+      const listFiltered = [...listData].filter(job => {
+        if (isTheJobMatchFilter(job, listFilter)) {
+          return job;
+        }
+      })
+      setDisplayData([...listFiltered])
+    }
+  }, [listFilter])
   const handleClick = (e) => {
     const value = e.target.textContent;
-    setListFilter(prev => prev.includes(value) ? [...prev] : [...prev, value])
+    setListFilter(prev => {
+      return !prev.includes(value) && (value.constructor === String)
+        ? [...prev, value]
+        : [...prev];
+    })
   }
   const Tags = () => listFilter.map((item, index) => <DevTag key={index}>{item}</DevTag>)
   return (
     <Container>
       {(listFilter.length > 0) && <FilterTags>{Tags()}</FilterTags>}
-      {listData.map(job =>
+      {displayData.map(job =>
         <CardTemplate key={job.id} data={job} onClick={handleClick} />
       )}
     </Container>
