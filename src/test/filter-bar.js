@@ -7,7 +7,7 @@ const addToListFilter = (value, prev = []) => {
     : [...prev];
 };
 const isTheJobMatchFilter = (job, filters) => {
-  const relevantInfoForFilter = [job.role, ...job.languages, ...job.tools];
+  const relevantInfoForFilter = [job.role, job.level, ...job.languages, ...job.tools];
   const checkIfMatch = filters.map(filter => {
     return relevantInfoForFilter.includes(filter)
   });
