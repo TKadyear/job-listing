@@ -2,7 +2,7 @@
 name: Try to Build
 
 on:
-  [push,pull request]:
+  [push, pull_request]:
     branches:
       - main
       - develop
