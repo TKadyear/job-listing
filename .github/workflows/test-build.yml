@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 name: Try to Build
 
 on:
@@ -5,6 +6,14 @@ on:
     branches:
       - main
       - develop
+=======
+name: Yarn Deploy
+
+on:
+  push:
+    branches:
+      - main
+>>>>>>> main
 
 jobs:
   deploy-to-gh-pages:
@@ -12,7 +21,29 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
+<<<<<<< HEAD
       - name: Install Dependencies
         run: npm install
       - name: Build
         run: npm run build
+=======
+      - name: Use SSH Key
+        run: |
+          mkdir -p ~/.ssh/
+          echo "${{secrets.SSH_PRIVATE_KEY}}" > ~/.ssh/id_rsa
+          sudo chmod 600 ~/.ssh/id_rsa
+      - name: Git User Config
+        run: |
+          git config --global user.email "tamarakadyear@gmail.com"
+          git config --global user.name "TKadyear"
+      - name: Install Dependencies
+        run: yarn install
+      - name: Build
+        run: yarn build
+      - name: Deploy with gh-pages
+        run: |
+          git remote set-url origin https://git:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git
+          yarn deploy
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+>>>>>>> main

@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { CardTemplate } from "./CardTemplate";
 import { device } from '../device';
 import { requestJob } from '../service/requestJobs.js'
-import { isTheJobMatchFilter } from '../test/filter-bar'
+import { isTheJobMatchFilter } from './filter-bar'
 const Container = styled.div`
   width: 90%;
   display: flex;
