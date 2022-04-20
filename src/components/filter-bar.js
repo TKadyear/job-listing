@@ -6,7 +6,7 @@ const addToListFilter = (value, prev = []) => {
     ? [...prev, value]
     : [...prev];
 };
-const isTheJobMatchFilter = (job, filters) => {
+export const isTheJobMatchFilter = (job, filters) => {
   const relevantInfoForFilter = [job.role, job.level, ...job.languages, ...job.tools];
   const checkIfMatch = filters.map(filter => {
     return relevantInfoForFilter.includes(filter)
@@ -25,4 +25,3 @@ const filterAllJobs = (state, filters) => {
   }
   return state;
 }
-module.exports = { addToListFilter, filterAllJobs, isTheJobMatchFilter }
