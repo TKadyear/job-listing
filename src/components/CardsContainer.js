@@ -1,3 +1,4 @@
+/* eslint-disable */
 import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { CardTemplate } from "./CardTemplate";
@@ -82,11 +83,7 @@ export const CardsContainer = () => {
   }, [])
   useEffect(() => {
     if (listFilter.length > 0) {
-      const listFiltered = [...listData].filter(job => {
-        if (isTheJobMatchFilter(job, listFilter)) {
-          return job;
-        }
-      })
+      const listFiltered = [...listData].filter(job => isTheJobMatchFilter(job, listFilter))
       setDisplayData([...listFiltered])
     } else {
       setDisplayData([...listData]);
