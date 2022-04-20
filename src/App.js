@@ -22,7 +22,6 @@ function App() {
     <>
       <BackgroundMain>
       </BackgroundMain>
-      <h1>Hola!</h1>
       <ContainerMain>
         <CardsContainer></CardsContainer>
       </ContainerMain>
