@@ -2,7 +2,7 @@
   "name": "job-listing",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://tkadyear.github.io/",
+  "homepage": "https://tkadyear.github.io/job-listing",
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^12.1.4",
